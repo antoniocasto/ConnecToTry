@@ -1,0 +1,30 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">ConnecT</string>
+    <string name="icona" tools:ignore="ExtraTranslation">icona</string>
+    <string name="immagine_username">immagine username</string>
+    <string name="immagine_password">immagine Password</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="non_sei_registrato">Non sei registrato?</string>
+    <string name="registrati">Registrati</string>
+    <string name="registratiMaiusc">REGISTRATI</string>
+    <string name="loginMinusc">Login</string>
+    <string name="gi_registrato">Già registrato?</string>
+    <string name="e_connettiti_con_il_mondo">e connettiti con il mondo...</string>
+    <string name="logo">logo</string>
+    <string name="connect">ConnecT</string>
+    <string name="immagine_email">immagine_email</string>
+    <string name="conferma_password">Conferma Password</string>
+    <string name="inserisci_mesaggio">Inserisci mesaggio</string>
+    <string name="invia">Invia</string>
+    <string name="autore">Autore</string>
+    <string name="messaggio">Messaggio</string>
+    <string name="AdMob_app_id">ca-app-pub-9811179677066074~9162597741</string>
+    <string name="connect_banner_ad">ca-app-pub-9811179677066074/3700363986</string>
+    <string name="logout">Logout</string>
+    <string name="cerca_contatto">Cerca contatto per email</string>
+    <string name="cerca">Cerca</string>
+    <string name="email">Email</string>
+
+</resources>

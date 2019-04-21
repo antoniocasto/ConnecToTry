@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "337499631812",
+    "firebase_url": "https://connecto-f04df.firebaseio.com",
+    "project_id": "connecto-f04df",
+    "storage_bucket": "connecto-f04df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337499631812:android:4810ce94d5344daf",
+        "android_client_info": {
+          "package_name": "it.antoniocasto.connecto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337499631812-mo728sisf5brpvsuf1q0cdsd2mh9qlaa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "it.antoniocasto.connecto",
+            "certificate_hash": "326bc4e31d0373ff11da25bb7500e23849d1bb15"
+          }
+        },
+        {
+          "client_id": "337499631812-bmu70079mo50of0hp6mbhjctne26aeio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdMqmhev5oPx4J-F-pgVzV9EV6JnWOwlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337499631812-bmu70079mo50of0hp6mbhjctne26aeio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
