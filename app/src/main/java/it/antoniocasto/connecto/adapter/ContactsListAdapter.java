@@ -5,11 +5,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -25,27 +27,27 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
 
     private Activity mActivity;
     private DatabaseReference mDatabaseReference;
-    private String mDisplayName;
-    private String mEmail;
-    private ArrayList<DataSnapshot> mDataSnapshot; //istanza che contiene dati provenienti da Firebase. E' il tipo di dato che usa firebase quando li manda
+    private ArrayList<DataSnapshot> mDataSnaphot;
 
+    //Definisco una variabile childeventlistener
     private ChildEventListener mListener = new ChildEventListener() {
         @Override
-        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-            //quando viene aggiunto un nuovo figlio -> messaggio
+        public void onChildAdded( DataSnapshot dataSnapshot,  String s) {
+            //quando viene aggiunto un nuovo figlio
 
-            mDataSnapshot.add(dataSnapshot);
-            notifyDataSetChanged(); //notifico
+            mDataSnaphot.add(dataSnapshot);
+            Log.i("ContactsActivity", Integer.toString(mDataSnaphot.size()));
+            notifyDataSetChanged();
         }
 
         @Override
         public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+            //quando un figlio cambia
         }
 
         @Override
         public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+            //figlio rimosso
         }
 
         @Override
@@ -59,58 +61,59 @@ public class ContactsListAdapter extends RecyclerView.Adapter<ContactsListAdapte
         }
     };
 
-    public ContactsListAdapter(Activity activity, DatabaseReference ref, String name, String email){
+    //Costruttore dell'adapter
+    public ContactsListAdapter(Activity activity, DatabaseReference ref){
         mActivity = activity;
-        mEmail = email;
-        mDatabaseReference = ref.child("users").child(email.replace('@', '+').replace('.', ':')).child("contacts");
-        mDisplayName = name;
-        mDataSnapshot = new ArrayList<>(); //creo un array list vuoto in cui salvo la lista dei contatti
+        mDatabaseReference = ref.child("users");
+        mDataSnaphot = new ArrayList<>();
+
         mDatabaseReference.addChildEventListener(mListener);
     }
 
-    @NonNull
     @Override
-    public ContactsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-
+    public ContactsViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.contact_row, parent, false);
         ContactsViewHolder vh = new ContactsViewHolder(v);
-
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ContactsViewHolder holder, int position) {
-        DataSnapshot snapshot = mDataSnapshot.get(position);
+    public void onBindViewHolder(ContactsViewHolder holder, int position) {
+        //Riempio il viewholder con i dati provenienti dal database
+
+        DataSnapshot snapshot = mDataSnaphot.get(position);
 
         User utente = snapshot.getValue(User.class);
 
-        holder.email.setText(utente.getUserEmail());
-        holder.username.setText(utente.getUserUsername());
+        holder.username.setText(utente.getUsername());
+        holder.email.setText(utente.getEmail());
+
 
     }
 
+    @Override
     public int getItemCount() {
-        return mDataSnapshot.size();
-    }
-
-    public void clean(){
-        mDatabaseReference.removeEventListener(mListener);
+        return mDataSnaphot.size();
     }
 
     public class ContactsViewHolder extends RecyclerView.ViewHolder{
 
         TextView username;
         TextView email;
-        LinearLayout.LayoutParams params; //per gestire il layout
+        LinearLayout.LayoutParams params;
 
-        public ContactsViewHolder(@NonNull View itemView) {
+        public ContactsViewHolder( View itemView) {
             super(itemView);
 
             //inizializzo elementi del ViewHolder
-            username = itemView.findViewById(R.id.tv_contanct_row_username);
-            email = itemView.findViewById(R.id.tv_contact_row_email);
+            username = (TextView) itemView.findViewById(R.id.tv_contact_row_username);
+            email = (TextView) itemView.findViewById(R.id.tv_contact_row_email);
             params = (LinearLayout.LayoutParams) username.getLayoutParams();
         }
+    }
+
+    public void clean(){
+        mDatabaseReference.removeEventListener(mListener);
     }
 }

@@ -3,21 +3,40 @@ package it.antoniocasto.connecto.model;
 public class User {
     private String username;
     private String email;
+    private String userID;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String username, String email) {
+    public User(String username, String email, String userID) {
         this.username = username;
         this.email = email;
+        this.userID = userID;
     }
 
-    public String getUserUsername(){
+    public String getUsername() {
         return username;
     }
 
-    public String getUserEmail(){
+    public String getEmail() {
         return email;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 }

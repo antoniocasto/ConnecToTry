@@ -136,11 +136,9 @@ public class RegisterActivity extends AppCompatActivity {
                             setNome(nome);
 
                             //TODO: creare nodo con email nel db realtime
-                            mDatabase = FirebaseDatabase.getInstance().getReference();
                             String idEmail = mEmail.getText().toString();
                             String idUser = idEmail;
-                            idUser = idUser.replace('@', '+').replace('.', ':'); //su firbase mantengo questa formattazione
-                            writeNewUser(idUser, nome, idEmail);
+                            writeNewUser(nome, idEmail);
 
 
 
@@ -197,12 +195,14 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     //Salva un nuovo utente nel Realtime database
-    private void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
+    private void writeNewUser(String name, String email) {
+        String generatedID;
+        User nuovo_utente;
 
-
-        mDatabase.child("users").child(userId).child("profile").setValue(user);
-        mDatabase.child("users").child(userId).child("contacts");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        generatedID = mDatabase.child("users").push().getKey();
+        nuovo_utente = new User(name, email, generatedID);
+        mDatabase.child("users").child(generatedID).setValue(nuovo_utente);
 
     }
 

@@ -9,16 +9,18 @@
         android:id="@+id/tv_contact_row_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="@string/email"
-        android:textSize="10sp"
-        tools:ignore="SmallSp" />
-
-    <TextView
-        android:id="@+id/tv_contanct_row_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/username"
-        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/tv_contact_row_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="@string/username"
+        android:textSize="18sp" />
 </LinearLayout>
